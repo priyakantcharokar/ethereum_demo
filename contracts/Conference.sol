@@ -5,7 +5,7 @@ contract Conference {
  	uint public numRegistrants;
  	uint public quota;
 
-  event Deposit(address _from, uint _amount);
+    event Deposit(address _from, uint _amount);
  	event Refund(address _to, uint _amount);
 
 
@@ -26,6 +26,13 @@ contract Conference {
  		registrantsPaid[msg.sender] = msg.value;
  		numRegistrants++;
  		Deposit(msg.sender, msg.value);
+ 	}
+
+	 function refundTicket() public {
+ 		
+ 		registrantsPaid[msg.sender] = msg.value;
+ 		numRegistrants--;
+ 		Refund(msg.sender, msg.value);
  	}
 
 }
